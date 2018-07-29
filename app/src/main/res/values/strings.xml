@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My531</string>
+    <string name="welcomeMessage">Welcome to My531!</string>
+    <string name="directionMessage">Please enter the amount of weight you did to achieve your estimated 1RM along with the number of reps you\'ve completed for that lift.</string>
+    <string name="squatText">Squat</string>
+    <string name="benchText">Bench</string>
+    <string name="deadliftText">Deadlift</string>
+    <string name="shoulderPressText">Shoulder Press</string>
+    <string name="saveButton">Save</string>
+    <string name="weightText">Weight Used</string>]
+    <string name="repsText">Reps Completed</string>
+    <string name="weightHint">135</string>
+    <string name="repHint">10</string>
+
+</resources>

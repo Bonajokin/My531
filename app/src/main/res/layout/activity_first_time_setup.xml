@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".firstTimeSetup">
+
+    <EditText
+        android:id="@+id/pressWeight"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginTop="196dp"
+        android:ems="10"
+        android:hint="@string/weightHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/benchReps"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <EditText
+        android:id="@+id/pressReps"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="196dp"
+        android:ems="10"
+        android:hint="@string/repHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <EditText
+        android:id="@+id/squatWeight"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginTop="156dp"
+        android:ems="10"
+        android:hint="@string/weightHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/benchReps"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <EditText
+        android:id="@+id/squatReps"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="156dp"
+        android:ems="10"
+        android:hint="@string/repHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <EditText
+        android:id="@+id/deadReps"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="116dp"
+        android:ems="10"
+        android:hint="@string/repHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <EditText
+        android:id="@+id/deadWeight"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginTop="120dp"
+        android:ems="10"
+        android:hint="@string/weightHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/benchReps"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <EditText
+        android:id="@+id/benchReps"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="@string/repHint"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <TextView
+        android:id="@+id/shoulderPressText"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/shoulderPressText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/squatText" />
+
+    <TextView
+        android:id="@+id/squatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/squatText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deadliftText" />
+
+    <TextView
+        android:id="@+id/deadliftText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/deadliftText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/benchText" />
+
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/welcomeMessage"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063"
+        tools:text="@string/welcomeMessage" />
+
+    <TextView
+        android:id="@+id/directionMessage"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:gravity="fill"
+        android:minLines="4"
+        android:text="@string/directionMessage"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMessage"
+        tools:text="@string/directionMessage" />
+
+    <TextView
+        android:id="@+id/benchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/benchText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <EditText
+        android:id="@+id/benchWeight"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="@string/weightHint"
+        android:inputType="number"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@+id/benchReps"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <Button
+        android:id="@+id/saveButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="460dp"
+        android:text="@string/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/saveButton" />
+
+    <TextView
+        android:id="@+id/weightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/weightText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/repsText"
+        app:layout_constraintStart_toEndOf="@+id/weightText"
+        app:layout_constraintTop_toBottomOf="@+id/directionMessage" />
+
+</android.support.constraint.ConstraintLayout>
