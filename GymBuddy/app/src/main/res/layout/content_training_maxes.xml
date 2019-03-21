@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".TrainingMaxes"
+    tools:showIn="@layout/activity_training_maxes">
+
+    <TextView
+        android:id="@+id/tm_repsTitleText"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="118dp"
+        android:text="Reps"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/tm_weightTitleText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tm_squatReps"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginBottom="27dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/tm_percentage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tm_squatWeight"
+        app:layout_constraintTop_toBottomOf="@+id/tm_pressReps" />
+
+    <EditText
+        android:id="@+id/tm_pressReps"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="48dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/tm_pressWeight"
+        app:layout_constraintTop_toBottomOf="@+id/tm_deadLiftReps" />
+
+    <EditText
+        android:id="@+id/tm_deadLiftReps"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="47dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/tm_deadliftWeight"
+        app:layout_constraintTop_toBottomOf="@+id/tm_benchReps" />
+
+    <EditText
+        android:id="@+id/tm_benchReps"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_repsTitleText" />
+
+    <EditText
+        android:id="@+id/tm_squatWeight"
+        android:layout_width="88dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/tm_squatText"
+        app:layout_constraintTop_toBottomOf="@+id/tm_pressWeight" />
+
+    <EditText
+        android:id="@+id/tm_pressWeight"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/tm_pressText"
+        app:layout_constraintTop_toBottomOf="@+id/tm_deadliftWeight" />
+
+    <EditText
+        android:id="@+id/tm_deadliftWeight"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/tm_deadliftText"
+        app:layout_constraintTop_toBottomOf="@+id/tm_benchWeight" />
+
+    <TextView
+        android:id="@+id/tm_squatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="165dp"
+        android:text="Squat"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tm_squatWeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_pressText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tm_pressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="44dp"
+        android:text="Press"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/tm_pressWeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_deadliftText" />
+
+    <TextView
+        android:id="@+id/tm_deadliftText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="25dp"
+        android:text="Deadlift"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/tm_deadliftWeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_benchText" />
+
+    <TextView
+        android:id="@+id/tm_benchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="163dp"
+        android:layout_marginEnd="40dp"
+        android:text="Bench"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/tm_benchWeight"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tm_benchWeight"
+        android:layout_width="88dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="51dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/tm_benchReps"
+        app:layout_constraintTop_toBottomOf="@+id/tm_weightTitleText" />
+
+    <Button
+        android:id="@+id/tm_submitButton"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="30dp"
+        android:text="Calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_squatWeight"
+        app:layout_constraintVertical_bias="0.48" />
+
+    <TextView
+        android:id="@+id/tm_weightTitleText"
+        android:layout_width="87dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="118dp"
+        android:text="Weight"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/debugTextBox"
+        android:layout_width="386dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="7dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:singleLine="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tm_repsTitleText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/tm_percentage"
+        android:layout_width="88dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="128dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_squatReps" />
+
+    <TextView
+        android:id="@+id/tm_percentageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="114dp"
+        android:layout_marginBottom="89dp"
+        android:text="TM %"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tm_percentage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tm_squatText"
+        app:layout_constraintVertical_bias="0.0" />
+</android.support.constraint.ConstraintLayout>
