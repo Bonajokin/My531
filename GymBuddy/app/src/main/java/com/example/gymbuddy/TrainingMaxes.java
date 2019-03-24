@@ -1,5 +1,7 @@
 package com.example.gymbuddy;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +13,7 @@ import components.TM;
 
 public class TrainingMaxes extends AppCompatActivity {
 
-    static public TM[] trainingMaxes = null;
+    private TM[] trainingMaxes = null;
 
     TextView benchWeight;
     TextView benchReps;
@@ -25,6 +27,12 @@ public class TrainingMaxes extends AppCompatActivity {
     TextView debugBox;
 
     Button calculate;
+
+
+    public TM[] getTrainingMaxes() {
+
+        return trainingMaxes;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +65,10 @@ public class TrainingMaxes extends AppCompatActivity {
                 trainingMaxes[2] = new TM(Integer.parseInt(pressReps.getText().toString()), Integer.parseInt(pressWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
                 trainingMaxes[3] = new TM(Integer.parseInt(squatReps.getText().toString()), Integer.parseInt(squatWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
 
-
+                Intent result = new Intent();
+                result.putExtra("Training Maxes", trainingMaxes);
+                setResult(Activity.RESULT_OK, result);
+                TrainingMaxes.this.finish();
                 //debugBox.setText("Bench = " + trainingMaxes[0].getTrainingMax() + ", Deadlift = " + trainingMaxes[1].getTrainingMax() + ", Press = " + trainingMaxes[2].getTrainingMax() + ", Squat = " + trainingMaxes[3].getTrainingMax());
 
 

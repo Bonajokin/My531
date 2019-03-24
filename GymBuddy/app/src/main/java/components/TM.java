@@ -1,6 +1,8 @@
 package components;
 
-public class TM {
+import java.io.Serializable;
+
+public class TM implements Serializable {
 
     private final double constant = 0.0333;
     private int trainingMax;

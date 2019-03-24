@@ -1,7 +1,9 @@
 package com.example.gymbuddy;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import components.TM;
+
 public class homeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -20,6 +24,11 @@ public class homeScreen extends AppCompatActivity
     TextView deadliftPR;
     TextView pressPR;
     TextView squatPR;
+
+    private static final int UPDATE_PR_REQUESTCODE = 1;
+
+
+    private TM[] trainingMaxes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +51,7 @@ public class homeScreen extends AppCompatActivity
         pressPR = findViewById(R.id.pressPR);
         squatPR = findViewById(R.id.squatPR);
 
-        if (TrainingMaxes.trainingMaxes == null) {
+        if (trainingMaxes == null) {
 
             benchPR.setText("0");
             deadliftPR.setText("0");
@@ -59,10 +68,10 @@ public class homeScreen extends AppCompatActivity
 
     public void updatePR() {
 
-        benchPR.setText(TrainingMaxes.trainingMaxes[0].toString());
-        deadliftPR.setText(TrainingMaxes.trainingMaxes[1].toString());
-        pressPR.setText(TrainingMaxes.trainingMaxes[2].toString());
-        squatPR.setText(TrainingMaxes.trainingMaxes[3].toString());
+        benchPR.setText(String.valueOf(trainingMaxes[0].getTrainingMax()));
+        deadliftPR.setText(String.valueOf(trainingMaxes[1].getTrainingMax()));
+        pressPR.setText(String.valueOf(trainingMaxes[2].getTrainingMax()));
+        squatPR.setText(String.valueOf(trainingMaxes[3].getTrainingMax()));
 
 
     }
@@ -106,9 +115,10 @@ public class homeScreen extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            //Set training Maxes, change icon later
 
-            Intent myIntent = new Intent(homeScreen.this, TrainingMaxes.class);
-            homeScreen.this.startActivity(myIntent);
+            Intent trainingMaxIntent = new Intent(homeScreen.this, TrainingMaxes.class);
+            homeScreen.this.startActivityForResult(trainingMaxIntent, UPDATE_PR_REQUESTCODE);
 
         } else if (id == R.id.nav_gallery) {
 
@@ -125,5 +135,24 @@ public class homeScreen extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            
+            case (UPDATE_PR_REQUESTCODE): {
+
+                if (resultCode == Activity.RESULT_OK) {
+                    trainingMaxes = (TM[]) data.getSerializableExtra("Training Maxes");
+                    updatePR();
+                }
+
+            }
+
+
+        }
     }
 }
