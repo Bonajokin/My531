@@ -46,10 +46,10 @@ public class homeScreen extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        benchPR = findViewById(R.id.benchPR);
-        deadliftPR = findViewById(R.id.deadliftPR);
-        pressPR = findViewById(R.id.pressPR);
-        squatPR = findViewById(R.id.squatPR);
+        benchPR = findViewById(R.id.hs_benchPR);
+        deadliftPR = findViewById(R.id.hs_deadliftPR);
+        pressPR = findViewById(R.id.hs_pressPR);
+        squatPR = findViewById(R.id.hs_squatPR);
 
         if (trainingMaxes == null) {
 
@@ -142,7 +142,7 @@ public class homeScreen extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            
+
             case (UPDATE_PR_REQUESTCODE): {
 
                 if (resultCode == Activity.RESULT_OK) {

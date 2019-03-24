@@ -9,7 +9,53 @@
     tools:showIn="@layout/app_bar_home_screen">
 
     <TextView
-        android:id="@+id/benchTitleText"
+        android:id="@+id/hs_latestWorkoutTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="69dp"
+        android:text="Latest Workout"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hs_footerDivider" />
+
+    <View
+        android:id="@+id/hs_footerDivider"
+        android:layout_width="395dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="45dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hs_benchImgButton" />
+
+    <ImageButton
+        android:id="@+id/hs_deadliftImgButton"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="41dp"
+        app:layout_constraintEnd_toStartOf="@+id/hs_pressImgButton3"
+        app:layout_constraintTop_toBottomOf="@+id/hs_contentDivider"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[1]" />
+
+    <TextView
+        android:id="@+id/hs_workoutText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="120dp"
+        android:text="Workouts"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hs_contentDivider" />
+
+    <TextView
+        android:id="@+id/hs_benchTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -17,32 +63,32 @@
         android:text="Bench"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personRecordsTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/hs_personRecordsTitleText" />
 
     <TextView
-        android:id="@+id/deadliftTitleText"
+        android:id="@+id/hs_deadliftTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
         android:text="Deadlift"
         android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@+id/benchTitleText"
-        app:layout_constraintTop_toBottomOf="@+id/personRecordsTitleText" />
+        app:layout_constraintStart_toEndOf="@+id/hs_benchTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/hs_personRecordsTitleText" />
 
     <TextView
-        android:id="@+id/pressTitleText"
+        android:id="@+id/hs_pressTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
         android:layout_marginTop="40dp"
         android:text="Press"
         android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@+id/deadliftTitleText"
-        app:layout_constraintTop_toBottomOf="@+id/personRecordsTitleText" />
+        app:layout_constraintStart_toEndOf="@+id/hs_deadliftTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/hs_personRecordsTitleText" />
 
     <TextView
-        android:id="@+id/squatTitleText"
+        android:id="@+id/hs_squatTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
@@ -51,26 +97,26 @@
         android:text="Squat"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pressTitleText"
-        app:layout_constraintTop_toBottomOf="@+id/personRecordsTitleText" />
+        app:layout_constraintStart_toEndOf="@+id/hs_pressTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/hs_personRecordsTitleText" />
 
     <TextView
-        android:id="@+id/personRecordsTitleText"
+        android:id="@+id/hs_personRecordsTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="49dp"
         android:layout_marginBottom="40dp"
         android:text="Personal Records"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/benchTitleText"
+        app:layout_constraintBottom_toTopOf="@+id/hs_benchTitleText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/hs_headerDivider"
         android:layout_width="395dp"
         android:layout_height="1dp"
         android:layout_marginStart="8dp"
@@ -79,23 +125,22 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/benchTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/hs_benchTitleText" />
 
     <View
-        android:id="@+id/divider2"
+        android:id="@+id/hs_contentDivider"
         android:layout_width="395dp"
         android:layout_height="1dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="269dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/benchPR" />
+        app:layout_constraintTop_toBottomOf="@+id/hs_benchPR" />
 
     <TextView
-        android:id="@+id/benchPR"
+        android:id="@+id/hs_benchPR"
         android:layout_width="72dp"
         android:layout_height="58dp"
         android:layout_marginStart="16dp"
@@ -103,12 +148,14 @@
         android:ems="10"
         android:inputType="none"
         android:singleLine="true"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/hs_headerDivider" />
 
     <TextView
-        android:id="@+id/deadliftPR"
+        android:id="@+id/hs_deadliftPR"
         android:layout_width="72dp"
         android:layout_height="58dp"
         android:layout_marginStart="27dp"
@@ -116,12 +163,14 @@
         android:ems="10"
         android:inputType="none"
         android:singleLine="true"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintStart_toEndOf="@+id/benchPR"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@+id/hs_benchPR"
+        app:layout_constraintTop_toBottomOf="@+id/hs_headerDivider" />
 
     <TextView
-        android:id="@+id/pressPR"
+        android:id="@+id/hs_pressPR"
         android:layout_width="72dp"
         android:layout_height="58dp"
         android:layout_marginStart="41dp"
@@ -129,12 +178,14 @@
         android:ems="10"
         android:inputType="none"
         android:singleLine="true"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintStart_toEndOf="@+id/deadliftPR"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@+id/hs_deadliftPR"
+        app:layout_constraintTop_toBottomOf="@+id/hs_headerDivider" />
 
     <TextView
-        android:id="@+id/squatPR"
+        android:id="@+id/hs_squatPR"
         android:layout_width="72dp"
         android:layout_height="58dp"
         android:layout_marginTop="12dp"
@@ -142,8 +193,55 @@
         android:ems="10"
         android:inputType="none"
         android:singleLine="true"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/hs_headerDivider" />
+
+    <ImageButton
+        android:id="@+id/hs_benchImgButton"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="27dp"
+        app:layout_constraintEnd_toStartOf="@+id/hs_deadliftImgButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hs_contentDivider"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[1]" />
+
+    <ImageButton
+        android:id="@+id/hs_pressImgButton3"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="26dp"
+        app:layout_constraintEnd_toStartOf="@+id/hs_squatImgButton4"
+        app:layout_constraintTop_toBottomOf="@+id/hs_contentDivider"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[1]" />
+
+    <ImageButton
+        android:id="@+id/hs_squatImgButton4"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hs_contentDivider"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[1]" />
+
+    <TextView
+        android:id="@+id/hs_latestWorkoutText"
+        android:layout_width="337dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/hs_latestWorkoutText"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hs_latestWorkoutTitleText" />
 
 </android.support.constraint.ConstraintLayout>

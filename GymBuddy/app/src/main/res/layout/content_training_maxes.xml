@@ -29,6 +29,8 @@
         android:layout_marginBottom="27dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@+id/tm_percentage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -44,6 +46,8 @@
         android:layout_marginEnd="48dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toEndOf="@+id/tm_pressWeight"
@@ -58,6 +62,8 @@
         android:layout_marginEnd="47dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toEndOf="@+id/tm_deadliftWeight"
@@ -71,6 +77,8 @@
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tm_repsTitleText" />
 
@@ -82,6 +90,8 @@
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintStart_toEndOf="@+id/tm_squatText"
         app:layout_constraintTop_toBottomOf="@+id/tm_pressWeight" />
 
@@ -93,6 +103,8 @@
         android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintStart_toEndOf="@+id/tm_pressText"
         app:layout_constraintTop_toBottomOf="@+id/tm_deadliftWeight" />
 
@@ -104,6 +116,8 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintStart_toEndOf="@+id/tm_deadliftText"
         app:layout_constraintTop_toBottomOf="@+id/tm_benchWeight" />
 
@@ -175,6 +189,8 @@
         android:layout_marginEnd="51dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
         app:layout_constraintEnd_toStartOf="@+id/tm_benchReps"
         app:layout_constraintTop_toBottomOf="@+id/tm_weightTitleText" />
 
@@ -228,6 +244,8 @@
         android:layout_marginEnd="128dp"
         android:ems="10"
         android:inputType="number"
+        android:maxLength="2"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tm_squatReps" />
 
