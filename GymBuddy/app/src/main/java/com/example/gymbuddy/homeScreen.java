@@ -25,8 +25,8 @@ public class homeScreen extends AppCompatActivity
     TextView pressPR;
     TextView squatPR;
 
-    private static final int UPDATE_PR_REQUESTCODE = 1;
-
+    private static final int SET_TRAININGMAXES_REQUESTCODE = 1;
+    private static final int EDIT_TRAININGMAXES_REQUESTCODE = 2;
 
     private TM[] trainingMaxes;
 
@@ -76,6 +76,7 @@ public class homeScreen extends AppCompatActivity
 
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -117,10 +118,28 @@ public class homeScreen extends AppCompatActivity
         if (id == R.id.nav_camera) {
             //Set training Maxes, change icon later
 
-            Intent trainingMaxIntent = new Intent(homeScreen.this, TrainingMaxes.class);
-            homeScreen.this.startActivityForResult(trainingMaxIntent, UPDATE_PR_REQUESTCODE);
 
+            //If training maxes were already loaded allow them to be edited. Edit this later when saving and loading is implemented.
+
+            if (false) {
+
+                Intent trainingMaxIntent = new Intent(homeScreen.this, TrainingMaxes.class);
+                homeScreen.this.startActivityForResult(trainingMaxIntent, EDIT_TRAININGMAXES_REQUESTCODE);
+
+            } else {
+
+                //If no training maxes are active allow setting them
+                Intent trainingMaxIntent = new Intent(homeScreen.this, TrainingMaxes.class);
+                homeScreen.this.startActivityForResult(trainingMaxIntent, SET_TRAININGMAXES_REQUESTCODE);
+
+            }
         } else if (id == R.id.nav_gallery) {
+
+            //Goto the current  if one is active here.
+
+            Intent workoutIntent = new Intent(homeScreen.this, workoutScreen.class);
+            homeScreen.this.startActivity(workoutIntent);
+
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -143,12 +162,39 @@ public class homeScreen extends AppCompatActivity
 
         switch (requestCode) {
 
-            case (UPDATE_PR_REQUESTCODE): {
+            case (SET_TRAININGMAXES_REQUESTCODE): {
 
                 if (resultCode == Activity.RESULT_OK) {
-                    trainingMaxes = (TM[]) data.getSerializableExtra("Training Maxes");
+                    try {
+
+                        trainingMaxes = (TM[]) data.getSerializableExtra("Training Maxes");
+
+                    } catch (NullPointerException e) {
+
+                        trainingMaxes = null;
+
+                    }
                     updatePR();
                 }
+
+            }
+
+            case (EDIT_TRAININGMAXES_REQUESTCODE): {
+
+                if (resultCode == Activity.RESULT_OK) {
+
+                    try {
+
+                        trainingMaxes = (TM[]) data.getSerializableExtra("Training Maxes");
+
+                    } catch (NullPointerException e) {
+
+                        trainingMaxes = null;
+
+                    }
+                    updatePR();
+                }
+
 
             }
 

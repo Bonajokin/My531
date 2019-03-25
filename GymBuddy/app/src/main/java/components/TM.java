@@ -21,11 +21,12 @@ public class TM implements Serializable {
     }
 
 
-    private int calculate() {
 
+    private int calculate() {
 
         trainingMax = (int) (weight * reps * constant + weight);
         return trainingMax;
+
     }
 
     public int getTrainingMax() {
@@ -34,9 +35,9 @@ public class TM implements Serializable {
 
     }
 
-    public void trainingMaxPercentage(int percent) {
+    public double getMaxPercentage() {
 
-        maxPercentage = percent / 100;
+        return maxPercentage;
 
     }
 

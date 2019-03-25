@@ -47,6 +47,17 @@ public class TrainingMaxes extends AppCompatActivity implements Serializable {
         trainingMaxes = new TM[5];
 
         calculate = findViewById(R.id.tm_submitButton);
+
+        //If saving them change button text to save else change it to edit if editing.
+        if (true) {
+
+            calculate.setText(getString(R.string.trainingMaxes_Save));
+
+        } else {
+
+            calculate.setText(getString(R.string.trainingMaxes_Edit));
+        }
+
         benchWeight = findViewById(R.id.tm_benchWeight);
         benchReps = findViewById(R.id.tm_benchReps);
         deadliftWeight = findViewById(R.id.tm_deadliftWeight);
