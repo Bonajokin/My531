@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -115,7 +116,7 @@ public class homeScreen extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_setTM) {
             //Set training Maxes, change icon later
 
 
@@ -133,7 +134,7 @@ public class homeScreen extends AppCompatActivity
                 homeScreen.this.startActivityForResult(trainingMaxIntent, SET_TRAININGMAXES_REQUESTCODE);
 
             }
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_workout) {
 
             //Goto the current  if one is active here.
 
@@ -141,13 +142,22 @@ public class homeScreen extends AppCompatActivity
             homeScreen.this.startActivity(workoutIntent);
 
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_progress_chart) {
 
-        } else if (id == R.id.nav_manage) {
+            Snackbar.make(getCurrentFocus(), "Feature not implemented yet.", Snackbar.LENGTH_SHORT).show();
+
+        } else if (id == R.id.nav_settings) {
+
+            Snackbar.make(getCurrentFocus(), "Feature not implemented yet.", Snackbar.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+            Snackbar.make(getCurrentFocus(), "Feature not implemented yet.", Snackbar.LENGTH_SHORT).show();
+
+
+        } else if (id == R.id.nav_export) {
+
+            Snackbar.make(getCurrentFocus(), "Feature not implemented yet.", Snackbar.LENGTH_SHORT).show();
 
         }
 

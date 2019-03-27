@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ws_header_template"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/workout_reps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/workout_nameTitle"
+        android:layout_alignRight="@id/workout_weightTitle"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="-130dp"
+        android:text="Reps"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/workout_weightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/workout_nameTitle"
+        android:layout_alignRight="@id/workout_setTitle"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="-153dp"
+        android:text="Weight"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/workout_nameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exercise Name"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/workout_setTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/workout_nameTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:text="Set"
+        android:textSize="20sp" />
+
+</RelativeLayout>
