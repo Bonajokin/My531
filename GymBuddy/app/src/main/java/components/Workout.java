@@ -1,6 +1,7 @@
 package components;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -13,7 +14,7 @@ import com.example.gymbuddy.R;
 
 import java.io.Serializable;
 
-public class WorkoutTemplate implements Serializable {
+public class Workout implements Serializable {
 
     private String name;
 
@@ -25,6 +26,8 @@ public class WorkoutTemplate implements Serializable {
     private int restTimerPreferenceCode;
 
     private View view;
+    private View headerView;
+    private View footerView;
     private LinearLayout rootSetLayout;
     private LinearLayout layoutToInflate;
     private LayoutInflater inflater;
@@ -32,6 +35,7 @@ public class WorkoutTemplate implements Serializable {
     private TextView workoutWeight;
     private TextView workoutReps;
     private TextView workoutSet;
+    private TextView workoutTimerText;
     private CheckBox workoutCheckbox;
     private EditText workoutName;
     private ImageButton workoutAddButton;
@@ -40,23 +44,25 @@ public class WorkoutTemplate implements Serializable {
     private Context currentContext;
 
 
-    //Need a stack of views for sets here
-
-    public WorkoutTemplate(String name, int weight, int reps, LinearLayout layout, LayoutInflater inflater, Context context) {
+    public Workout(String name, int weight, int reps, LinearLayout layout, LayoutInflater inflater, Context context) {
 
         this.name = name;
         this.weight = weight;
         this.reps = reps;
         this.setNum = 1;
-        this.restTimerPreferenceCode = 2;
+        this.restTimerPreferenceCode = -1;
         this.layoutToInflate = layout;
         this.inflater = inflater;
         layoutToInflate = layout;
         currentContext = context;
 
 
+        //Link to countdown timer text
+        workoutTimerText = layoutToInflate.findViewById(R.id.ws_setTimerText);
+
         //Create Header
         view = inflater.inflate(R.layout.workout_header_template, null);
+        headerView = view;
         layoutToInflate.addView(view);
 
         workoutName = view.findViewById(R.id.workout_nameTitle);
@@ -78,7 +84,32 @@ public class WorkoutTemplate implements Serializable {
         workoutWeight = view.findViewById(R.id.workout_weight);
         workoutSet = view.findViewById(R.id.workout_set);
         workoutReps = view.findViewById(R.id.workout_reps);
+
+
         workoutCheckbox = view.findViewById(R.id.workout_setCheckbox);
+        workoutCheckbox.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                CountdownTimer timer = new CountdownTimer(getTimerPreference());
+
+                if (((CheckBox) v).isChecked()) {
+
+
+                    timer.run();
+                    workoutTimerText.setText(String.valueOf(timer.getTimeRemaining()));
+
+                } else {
+
+                }
+
+
+            }
+
+
+        });
 
         workoutSet.setText(String.valueOf(setNum));
         workoutWeight.setText(String.valueOf(this.weight));
@@ -89,6 +120,7 @@ public class WorkoutTemplate implements Serializable {
         //Create footer
 
         view = inflater.inflate(R.layout.workout_footer_template, null);
+        footerView = view;
         layoutToInflate.addView(view);
 
         workoutAddButton = view.findViewById(R.id.workout_plusSetButton);
@@ -104,6 +136,14 @@ public class WorkoutTemplate implements Serializable {
 
         });
         workoutDeleteButton = view.findViewById(R.id.workout_minusSetButton);
+        workoutDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                removeSet();
+
+            }
+        });
 
 
     }
@@ -134,21 +174,45 @@ public class WorkoutTemplate implements Serializable {
 
     public void removeSet() {
 
+        if (setNum >= 1) {
 
-        setNum--;
+            rootSetLayout.removeViewAt(setNum - 1);
+            setNum--;
 
+        } else {
+
+            Snackbar.make(rootSetLayout, "Remove Section?", Snackbar.LENGTH_LONG)
+                    .setAction("CONFIRM", new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+
+                            layoutToInflate.removeViewAt(layoutToInflate.indexOfChild(headerView));
+                            layoutToInflate.removeViewAt(layoutToInflate.indexOfChild(footerView));
+
+                        }
+
+
+                    }).show();
+
+
+        }
 
     }
+
+
 
     public void editWeight(int weight) {
 
         this.weight = weight;
+        workoutWeight.setText(String.valueOf(this.weight));
 
     }
 
     public void editReps(int reps) {
 
         this.reps = reps;
+        workoutReps.setText(String.valueOf(this.reps));
 
     }
 
@@ -198,6 +262,33 @@ public class WorkoutTemplate implements Serializable {
             }
         });
 
+
+    }
+
+    private int getTimerPreference() {
+
+
+        switch (restTimerPreferenceCode) {
+
+            case 1: {
+                return 30;
+            }
+
+            case 2: {
+                return 60;
+            }
+
+            case 3: {
+                return 90;
+            }
+
+            case -1: {
+                return 10;
+            }
+
+        }
+
+        return 60;
 
     }
 

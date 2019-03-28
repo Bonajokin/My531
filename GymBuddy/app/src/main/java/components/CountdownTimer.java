@@ -1,8 +1,10 @@
 package components;
 
+import android.os.AsyncTask;
+
 import java.util.Date;
 
-public class CountdownTimer extends Thread {
+public class CountdownTimer extends AsyncTask {
 
     private boolean isActive;
     private long remainingTime;
@@ -32,10 +34,9 @@ public class CountdownTimer extends Thread {
 
     }
 
-    public void run() {
-
-        start(timeRequested);
-
+    @Override
+    protected Object doInBackground(Object[] objects) {
+        return null;
     }
 
     private void start(int seconds) {

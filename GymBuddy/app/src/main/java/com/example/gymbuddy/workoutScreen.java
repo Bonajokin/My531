@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import components.WorkoutTemplate;
+import components.Workout;
 
 public class workoutScreen extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class workoutScreen extends AppCompatActivity {
 
                 //Build the workout header, content, footer from templates
 
-                WorkoutTemplate template = new WorkoutTemplate("Testing", 0, 0, (LinearLayout) findViewById(R.id.ws_LinearLayout), getLayoutInflater(), getApplicationContext());
+                Workout template = new Workout("Testing", 0, 0, (LinearLayout) findViewById(R.id.ws_LinearLayout), getLayoutInflater(), getApplicationContext());
 
 
 

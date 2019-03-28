@@ -9,11 +9,8 @@
     tools:showIn="@layout/activity_workout_screen">
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="584dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="83dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,4 +20,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
