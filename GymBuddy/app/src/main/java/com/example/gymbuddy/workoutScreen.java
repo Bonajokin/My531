@@ -42,7 +42,7 @@ public class workoutScreen extends AppCompatActivity {
 
                 //Build the workout header, content, footer from templates
 
-                WorkoutTemplate template = new WorkoutTemplate("Testing", 0, 0, (LinearLayout) findViewById(R.id.ws_LinearLayout), getLayoutInflater());
+                WorkoutTemplate template = new WorkoutTemplate("Testing", 0, 0, (LinearLayout) findViewById(R.id.ws_LinearLayout), getLayoutInflater(), getApplicationContext());
 
 
 

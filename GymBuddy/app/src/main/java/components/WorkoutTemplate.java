@@ -1,5 +1,6 @@
 package components;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -16,12 +17,15 @@ public class WorkoutTemplate implements Serializable {
 
     private String name;
 
+    private static int id = 0;
+
     private int setNum;
     private int weight;
     private int reps;
     private int restTimerPreferenceCode;
 
     private View view;
+    private LinearLayout rootSetLayout;
     private LinearLayout layoutToInflate;
     private LayoutInflater inflater;
 
@@ -33,10 +37,12 @@ public class WorkoutTemplate implements Serializable {
     private ImageButton workoutAddButton;
     private ImageButton workoutDeleteButton;
 
+    private Context currentContext;
+
 
     //Need a stack of views for sets here
 
-    public WorkoutTemplate(String name, int weight, int reps, LinearLayout layout, LayoutInflater inflater) {
+    public WorkoutTemplate(String name, int weight, int reps, LinearLayout layout, LayoutInflater inflater, Context context) {
 
         this.name = name;
         this.weight = weight;
@@ -46,6 +52,7 @@ public class WorkoutTemplate implements Serializable {
         this.layoutToInflate = layout;
         this.inflater = inflater;
         layoutToInflate = layout;
+        currentContext = context;
 
 
         //Create Header
@@ -58,9 +65,15 @@ public class WorkoutTemplate implements Serializable {
 
 
         //Create first set
+        LinearLayout setContainer = new LinearLayout(currentContext);
+        setContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        setContainer.setOrientation(LinearLayout.VERTICAL);
+        setContainer.setId(++id);
+        layoutToInflate.addView(setContainer);
 
         view = inflater.inflate(R.layout.workout_content_template, null);
-        layoutToInflate.addView(view);
+        rootSetLayout = layoutToInflate.findViewById(id);
+        setContainer.addView(view);
 
         workoutWeight = view.findViewById(R.id.workout_weight);
         workoutSet = view.findViewById(R.id.workout_set);
@@ -71,7 +84,6 @@ public class WorkoutTemplate implements Serializable {
         workoutWeight.setText(String.valueOf(this.weight));
         workoutReps.setText(String.valueOf(this.reps));
 
-        addSet();
 
 
         //Create footer
@@ -80,6 +92,17 @@ public class WorkoutTemplate implements Serializable {
         layoutToInflate.addView(view);
 
         workoutAddButton = view.findViewById(R.id.workout_plusSetButton);
+        workoutAddButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                addSet();
+
+            }
+
+
+        });
         workoutDeleteButton = view.findViewById(R.id.workout_minusSetButton);
 
 
@@ -102,7 +125,7 @@ public class WorkoutTemplate implements Serializable {
 
         setNum++;
         view = inflater.inflate(R.layout.workout_content_template, null);
-        layoutToInflate.addView(view);
+        rootSetLayout.addView(view);
         TextView temp = view.findViewById(R.id.workout_set);
         temp.setText(String.valueOf(setNum));
 
