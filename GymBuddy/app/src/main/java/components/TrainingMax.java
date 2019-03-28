@@ -2,7 +2,7 @@ package components;
 
 import java.io.Serializable;
 
-public class TM implements Serializable {
+public class TrainingMax implements Serializable {
 
     private final double constant = 0.0333;
     private int trainingMax;
@@ -11,7 +11,7 @@ public class TM implements Serializable {
     private double maxPercentage;
 
 
-    public TM(int reps, int weight, double maxPercent) {
+    public TrainingMax(int reps, int weight, double maxPercent) {
 
         this.reps = reps;
         this.weight = weight;

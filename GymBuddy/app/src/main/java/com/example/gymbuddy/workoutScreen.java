@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import components.WorkoutTemplate;
+
 public class workoutScreen extends AppCompatActivity {
 
 
@@ -39,13 +41,9 @@ public class workoutScreen extends AppCompatActivity {
                         }).show();
 
                 //Build the workout header, content, footer from templates
-                LinearLayout headerTemplate = findViewById(R.id.ws_LinearLayout);
-                View template = getLayoutInflater().inflate(R.layout.workout_header_template, null);
-                headerTemplate.addView(template);
-                template = getLayoutInflater().inflate(R.layout.workout_content_template, null);
-                headerTemplate.addView(template);
-                template = getLayoutInflater().inflate(R.layout.workout_footer_template, null);
-                headerTemplate.addView(template);
+
+                WorkoutTemplate template = new WorkoutTemplate("Testing", 0, 0, (LinearLayout) findViewById(R.id.ws_LinearLayout), getLayoutInflater());
+
 
 
             }
@@ -56,4 +54,7 @@ public class workoutScreen extends AppCompatActivity {
 
     }
 
+
 }
+
+

@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import components.TM;
+import components.TrainingMax;
 
 public class homeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,7 +29,7 @@ public class homeScreen extends AppCompatActivity
     private static final int SET_TRAININGMAXES_REQUESTCODE = 1;
     private static final int EDIT_TRAININGMAXES_REQUESTCODE = 2;
 
-    private TM[] trainingMaxes;
+    private TrainingMax[] trainingMaxes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,13 +124,13 @@ public class homeScreen extends AppCompatActivity
 
             if (false) {
 
-                Intent trainingMaxIntent = new Intent(homeScreen.this, TrainingMaxes.class);
+                Intent trainingMaxIntent = new Intent(homeScreen.this, trainingMaxScreen.class);
                 homeScreen.this.startActivityForResult(trainingMaxIntent, EDIT_TRAININGMAXES_REQUESTCODE);
 
             } else {
 
                 //If no training maxes are active allow setting them
-                Intent trainingMaxIntent = new Intent(homeScreen.this, TrainingMaxes.class);
+                Intent trainingMaxIntent = new Intent(homeScreen.this, trainingMaxScreen.class);
                 homeScreen.this.startActivityForResult(trainingMaxIntent, SET_TRAININGMAXES_REQUESTCODE);
 
             }
@@ -177,7 +177,7 @@ public class homeScreen extends AppCompatActivity
                 if (resultCode == Activity.RESULT_OK) {
                     try {
 
-                        trainingMaxes = (TM[]) data.getSerializableExtra("Training Maxes");
+                        trainingMaxes = (TrainingMax[]) data.getSerializableExtra("Training Maxes");
 
                     } catch (NullPointerException e) {
 
@@ -195,7 +195,7 @@ public class homeScreen extends AppCompatActivity
 
                     try {
 
-                        trainingMaxes = (TM[]) data.getSerializableExtra("Training Maxes");
+                        trainingMaxes = (TrainingMax[]) data.getSerializableExtra("Training Maxes");
 
                     } catch (NullPointerException e) {
 

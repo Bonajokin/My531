@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-import components.TM;
+import components.TrainingMax;
 
-public class TrainingMaxes extends AppCompatActivity implements Serializable {
+public class trainingMaxScreen extends AppCompatActivity implements Serializable {
 
-    private TM[] trainingMaxes = null;
+    private TrainingMax[] trainingMaxes = null;
 
     TextView benchWeight;
     TextView benchReps;
@@ -31,7 +31,7 @@ public class TrainingMaxes extends AppCompatActivity implements Serializable {
     Button calculate;
 
 
-    public TM[] getTrainingMaxes() {
+    public TrainingMax[] getTrainingMaxes() {
 
         return trainingMaxes;
     }
@@ -44,7 +44,7 @@ public class TrainingMaxes extends AppCompatActivity implements Serializable {
         setSupportActionBar(toolbar);
 
 
-        trainingMaxes = new TM[5];
+        trainingMaxes = new TrainingMax[5];
 
         calculate = findViewById(R.id.tm_submitButton);
 
@@ -73,15 +73,15 @@ public class TrainingMaxes extends AppCompatActivity implements Serializable {
         calculate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                trainingMaxes[0] = new TM(Integer.parseInt(benchReps.getText().toString()), Integer.parseInt(benchWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
-                trainingMaxes[1] = new TM(Integer.parseInt(deadliftReps.getText().toString()), Integer.parseInt(deadliftWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
-                trainingMaxes[2] = new TM(Integer.parseInt(pressReps.getText().toString()), Integer.parseInt(pressWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
-                trainingMaxes[3] = new TM(Integer.parseInt(squatReps.getText().toString()), Integer.parseInt(squatWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
+                trainingMaxes[0] = new TrainingMax(Integer.parseInt(benchReps.getText().toString()), Integer.parseInt(benchWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
+                trainingMaxes[1] = new TrainingMax(Integer.parseInt(deadliftReps.getText().toString()), Integer.parseInt(deadliftWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
+                trainingMaxes[2] = new TrainingMax(Integer.parseInt(pressReps.getText().toString()), Integer.parseInt(pressWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
+                trainingMaxes[3] = new TrainingMax(Integer.parseInt(squatReps.getText().toString()), Integer.parseInt(squatWeight.getText().toString()), Double.parseDouble(trainingMax.getText().toString()));
 
                 Intent result = new Intent();
                 result.putExtra("Training Maxes", trainingMaxes);
                 setResult(Activity.RESULT_OK, result);
-                TrainingMaxes.this.finish();
+                trainingMaxScreen.this.finish();
                 //debugBox.setText("Bench = " + trainingMaxes[0].getTrainingMax() + ", Deadlift = " + trainingMaxes[1].getTrainingMax() + ", Press = " + trainingMaxes[2].getTrainingMax() + ", Squat = " + trainingMaxes[3].getTrainingMax());
 
 

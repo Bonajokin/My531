@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/workout_setCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@id/workout_set"
@@ -37,7 +37,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/workout_reps2"
+        android:id="@+id/workout_reps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/workout_setTitle"
