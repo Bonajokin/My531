@@ -9,8 +9,6 @@ import java.util.Date;
 
 public class CountdownTimer extends AsyncTask<Void, Void, Boolean> {
 
-    private onTimerCompleted listener;
-
     private long remainingTime;
     private long startTime;
     private long endTime;
@@ -27,10 +25,6 @@ public class CountdownTimer extends AsyncTask<Void, Void, Boolean> {
         timeRequested = seconds;
         this.timerText = textView;
 
-    }
-
-    public CountdownTimer(onTimerCompleted listener) {
-        this.listener = listener;
     }
 
     private int getCurrentTime() {

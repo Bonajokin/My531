@@ -17,12 +17,6 @@ import com.example.gymbuddy.R;
 
 import java.io.Serializable;
 
-interface onTimerCompleted {
-
-    void updateUIThreadTimer(boolean result);
-
-}
-
 public class Workout implements Serializable {
 
     private String name;
@@ -38,6 +32,7 @@ public class Workout implements Serializable {
 
     private View view;
     private View headerView;
+    private View setView;
     private View footerView;
     private LinearLayout rootSetLayout;
     private LinearLayout layoutToInflate;
@@ -78,6 +73,8 @@ public class Workout implements Serializable {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                //Reset the active timer check so that the next timer can activate
                 if (s.toString().equals("0:01")) {
 
                     isActiveTimer = false;
@@ -107,6 +104,7 @@ public class Workout implements Serializable {
         setContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         setContainer.setOrientation(LinearLayout.VERTICAL);
         setContainer.setId(++id);
+        setView = setContainer;
         layoutToInflate.addView(setContainer);
 
         view = inflater.inflate(R.layout.workout_content_template, null);
@@ -265,6 +263,17 @@ public class Workout implements Serializable {
     }
 
 
+    public View getHeaderView() {
+        return headerView;
+    }
+
+    public View getSetView() {
+        return setView;
+    }
+
+    public View getFooterView() {
+        return footerView;
+    }
 
     public void editWeight(int weight) {
 
@@ -298,57 +307,36 @@ public class Workout implements Serializable {
 
     }
 
-
-
-    private void runOnFocusListeners() {
-
-
-        //Listener to change the name of the title on focus change.
-        workoutName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
-
-                if (!hasFocus) {
-
-
-                    workoutName.setText(workoutName.getText());
-                    workoutName.setEnabled(false);
-
-                }
-
-
-            }
-        });
-
-
-    }
-
     private int getTimerPreference() {
 
 
         switch (restTimerPreferenceCode) {
 
             case 1: {
+                //30 seconds
                 return 30;
             }
 
             case 2: {
+                // 1 minute
                 return 60;
             }
 
             case 3: {
+                // 1 minute 30 seconds
                 return 90;
             }
 
             case -1: {
+                // 10 seconds debugging and testing case
                 return 10;
             }
 
+            default:
+                return 60;
+
         }
 
-        return 60;
 
     }
 
