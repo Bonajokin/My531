@@ -83,7 +83,7 @@ public class CountdownTimer extends AsyncTask<Void, Void, Boolean> {
         timerText.setVisibility(View.INVISIBLE);
         isActive = false;
 
-        //send a vibration notification here.
+        //send a vibration notification here. ?
 
 
     }
