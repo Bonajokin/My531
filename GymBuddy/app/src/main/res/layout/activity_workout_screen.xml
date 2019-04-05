@@ -11,18 +11,25 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
+        <RelativeLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="?attr/colorPrimary"
+            android:layout_height="56dp"
 
 
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="?attr/colorPrimary">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/ws_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:text="Workout Name"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/ws_setTimerText"
@@ -30,10 +37,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="171dp"
-                android:layout_marginTop="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="1dp"
                 android:text="0:00"
+                android:textAlignment="center"
                 android:textColor="@color/white"
+                android:textSize="40sp"
                 android:visibility="invisible" />
         </RelativeLayout>
 
