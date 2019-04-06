@@ -25,29 +25,23 @@ public class Workout implements Serializable {
 
     private int setNum;
     private int restTimerPreferenceCode;
-    public static boolean isActiveTimer;
-    public static CountdownTimer activeTimer;
+    private static boolean isActiveTimer;
+    private static CountdownTimer activeTimer;
 
     private View view;
     private View headerView;
     private View setView;
     private View footerView;
+    private RelativeLayout greenHeaderLayout;
     private LinearLayout rootSetLayout;
     private LinearLayout layoutToInflate;
     private LayoutInflater inflater;
 
     private TextView workoutWeight;
     private TextView workoutReps;
-    private TextView workoutSet;
     private TextView workoutTimerText;
-    private CheckBox workoutCheckbox;
     private EditText workoutName;
-    private ImageButton workoutAddButton;
-    private ImageButton workoutDeleteButton;
-    private ImageButton workoutWeightAddButton;
-    private ImageButton workoutWeightMinusButton;
-    private ImageButton workoutRepsAddButton;
-    private ImageButton workoutRepsMinusButton;
+
 
     private Context currentContext;
 
@@ -58,166 +52,14 @@ public class Workout implements Serializable {
         this.setNum = 1;
         this.restTimerPreferenceCode = -1;
         this.inflater = inflater;
+        greenHeaderLayout = headerLayout;
         layoutToInflate = lowerlayout;
         currentContext = context;
 
-
-
-        //Link to countdown timer text
-        workoutTimerText = headerLayout.findViewById(R.id.ws_setTimerText);
-        workoutTimerText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                //Reset the active timer check so that the next timer can activate
-                if (s.toString().equals("0:01")) {
-
-                    isActiveTimer = false;
-
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-
-        //Create Header
-        view = inflater.inflate(R.layout.workout_header_template, null);
-        headerView = view;
-        layoutToInflate.addView(view);
-
-        workoutName = view.findViewById(R.id.workout_nameTitle);
-
-        workoutName.setText(getName());
-
-
-        //Create first set
-        LinearLayout setContainer = new LinearLayout(currentContext);
-        setContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        setContainer.setOrientation(LinearLayout.VERTICAL);
-        setContainer.setId(++id);
-        setView = setContainer;
-        layoutToInflate.addView(setContainer);
-
-        view = inflater.inflate(R.layout.workout_content_template, null);
-        rootSetLayout = layoutToInflate.findViewById(id);
-        setContainer.addView(view);
-
-        workoutWeight = view.findViewById(R.id.workout_weight);
-        workoutSet = view.findViewById(R.id.workout_set);
-        workoutReps = view.findViewById(R.id.workout_reps);
-
-        workoutWeightAddButton = view.findViewById(R.id.workout_weightPlusButton);
-        workoutWeightMinusButton = view.findViewById(R.id.workout_weightMinusButton);
-
-        workoutRepsAddButton = view.findViewById(R.id.workout_repsPlusButton);
-        workoutRepsMinusButton = view.findViewById(R.id.workout_repsMinusButton);
-
-        workoutWeightAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                incrementOne(workoutWeight);
-            }
-        });
-
-        workoutWeightMinusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                decrementOne(workoutWeight);
-            }
-        });
-
-        workoutRepsAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                incrementOne(workoutReps);
-            }
-        });
-
-        workoutRepsMinusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                decrementOne(workoutReps);
-            }
-        });
-
-
-
-
-
-        workoutCheckbox = view.findViewById(R.id.workout_setCheckbox);
-        workoutCheckbox.setOnClickListener(new View.OnClickListener() {
-
-
-            @Override
-            public void onClick(View v) {
-
-                if (((CheckBox) v).isChecked()) {
-
-                    if (!isActiveTimer) {
-                        activeTimer = new CountdownTimer(getTimerPreference(), workoutTimerText);
-                        isActiveTimer = true;
-                        activeTimer.execute();
-
-                    } else {
-                        isActiveTimer = activeTimer.isActive();
-                        activeTimer.resetTimer(getTimerPreference());
-
-                    }
-
-                } else {
-
-                    isActiveTimer = activeTimer.isActive();
-
-                }
-
-
-            }
-
-
-        });
-
-        workoutSet.setText(String.valueOf(setNum));
-        workoutWeight.setText(String.valueOf(0));
-        workoutReps.setText(String.valueOf(0));
-
-
-
-        //Create footer
-
-        view = inflater.inflate(R.layout.workout_footer_template, null);
-        footerView = view;
-        layoutToInflate.addView(view);
-
-        workoutAddButton = view.findViewById(R.id.workout_plusSetButton);
-        workoutAddButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                addSet();
-
-            }
-
-
-        });
-        workoutDeleteButton = view.findViewById(R.id.workout_minusSetButton);
-        workoutDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                removeSet();
-
-            }
-        });
+        bindCountdownTimerToUI();
+        createHeader();
+        createSet();
+        createFooter();
 
 
     }
@@ -236,6 +78,8 @@ public class Workout implements Serializable {
     }
 
     public void addSet() {
+
+        //Bug happens when you create multiple sets at one time the add and minus buttons are getting mismapped.
 
         setNum++;
         view = inflater.inflate(R.layout.workout_content_template, null);
@@ -351,7 +195,8 @@ public class Workout implements Serializable {
 
         int amount;
         amount = Integer.parseInt(view.getText().toString());
-        amount++;
+        if (amount < 999)
+            amount++;
         view.setText(String.valueOf(amount));
 
     }
@@ -360,7 +205,8 @@ public class Workout implements Serializable {
 
         int amount;
         amount = Integer.parseInt(view.getText().toString());
-        amount--;
+        if (amount > 0)
+            amount--;
         view.setText(String.valueOf(amount));
 
     }
@@ -375,6 +221,182 @@ public class Workout implements Serializable {
     public void setRestTimerPreferenceCode(int restTimerPreferenceCode) {
 
         this.restTimerPreferenceCode = restTimerPreferenceCode;
+
+    }
+
+
+    private void bindCountdownTimerToUI() {
+
+        //Link to countdown timer text
+        workoutTimerText = greenHeaderLayout.findViewById(R.id.ws_setTimerText);
+        workoutTimerText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                //Reset the active timer check so that the next timer can activate
+                if (s.toString().equals("0:01")) {
+
+                    isActiveTimer = false;
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    private void createHeader() {
+
+        //Create Header
+        view = inflater.inflate(R.layout.workout_header_template, null);
+        headerView = view;
+        layoutToInflate.addView(view);
+
+        workoutName = view.findViewById(R.id.workout_nameTitle);
+
+        workoutName.setText(getName());
+
+    }
+
+    private void createSet() {
+
+        //Create first set
+        ImageButton workoutWeightAddButton;
+        ImageButton workoutWeightMinusButton;
+        ImageButton workoutRepsAddButton;
+        ImageButton workoutRepsMinusButton;
+        TextView workoutSet;
+        CheckBox workoutCheckbox;
+
+        LinearLayout setContainer = new LinearLayout(currentContext);
+        setContainer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        setContainer.setOrientation(LinearLayout.VERTICAL);
+        setContainer.setId(++id);
+        setView = setContainer;
+        layoutToInflate.addView(setContainer);
+
+        view = inflater.inflate(R.layout.workout_content_template, null);
+        rootSetLayout = layoutToInflate.findViewById(id);
+        setContainer.addView(view);
+
+        workoutWeight = view.findViewById(R.id.workout_weight);
+        workoutSet = view.findViewById(R.id.workout_set);
+        workoutReps = view.findViewById(R.id.workout_reps);
+
+        workoutWeightAddButton = view.findViewById(R.id.workout_weightPlusButton);
+        workoutWeightMinusButton = view.findViewById(R.id.workout_weightMinusButton);
+
+        workoutRepsAddButton = view.findViewById(R.id.workout_repsPlusButton);
+        workoutRepsMinusButton = view.findViewById(R.id.workout_repsMinusButton);
+
+        workoutWeightAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incrementOne(workoutWeight);
+            }
+        });
+
+        workoutWeightMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decrementOne(workoutWeight);
+            }
+        });
+
+        workoutRepsAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incrementOne(workoutReps);
+            }
+        });
+
+        workoutRepsMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decrementOne(workoutReps);
+            }
+        });
+
+
+        workoutCheckbox = view.findViewById(R.id.workout_setCheckbox);
+        workoutCheckbox.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                if (((CheckBox) v).isChecked()) {
+
+                    if (!isActiveTimer) {
+                        activeTimer = new CountdownTimer(getTimerPreference(), workoutTimerText);
+                        isActiveTimer = true;
+                        activeTimer.execute();
+
+                    } else {
+                        isActiveTimer = activeTimer.isActive();
+                        activeTimer.resetTimer(getTimerPreference());
+
+                    }
+
+                } else {
+
+                    isActiveTimer = activeTimer.isActive();
+
+                }
+
+
+            }
+
+
+        });
+
+        workoutSet.setText(String.valueOf(setNum));
+        workoutWeight.setText(String.valueOf(0));
+        workoutReps.setText(String.valueOf(0));
+
+
+    }
+
+    private void createFooter() {
+
+        //Create footer
+        ImageButton workoutAddButton;
+        ImageButton workoutDeleteButton;
+
+        view = inflater.inflate(R.layout.workout_footer_template, null);
+        footerView = view;
+        layoutToInflate.addView(view);
+
+        workoutAddButton = view.findViewById(R.id.workout_plusSetButton);
+        workoutAddButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                addSet();
+
+            }
+
+
+        });
+        workoutDeleteButton = view.findViewById(R.id.workout_minusSetButton);
+        workoutDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                removeSet();
+
+            }
+        });
 
     }
 
