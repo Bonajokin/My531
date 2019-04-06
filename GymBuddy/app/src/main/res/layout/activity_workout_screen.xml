@@ -29,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Workout Name"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/ws_setTimerText"

@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ws_setView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="27dp">
+
+    <ImageButton
+        android:id="@+id/workout_repsPlusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/workout_repsMinusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="259dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_media_rew" />
 
     <CheckBox
         android:id="@+id/workout_setCheckbox"
@@ -48,4 +71,26 @@
         android:text="1"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/workout_weightPlusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="182dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/workout_weightMinusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_media_rew" />
 </RelativeLayout>

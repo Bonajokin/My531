@@ -24,8 +24,6 @@ public class Workout implements Serializable {
     private static int id = 0;
 
     private int setNum;
-    private int weight;
-    private int reps;
     private int restTimerPreferenceCode;
     public static boolean isActiveTimer;
     public static CountdownTimer activeTimer;
@@ -46,15 +44,17 @@ public class Workout implements Serializable {
     private EditText workoutName;
     private ImageButton workoutAddButton;
     private ImageButton workoutDeleteButton;
+    private ImageButton workoutWeightAddButton;
+    private ImageButton workoutWeightMinusButton;
+    private ImageButton workoutRepsAddButton;
+    private ImageButton workoutRepsMinusButton;
 
     private Context currentContext;
 
 
-    public Workout(String name, int weight, int reps, LinearLayout lowerlayout, RelativeLayout headerLayout, LayoutInflater inflater, Context context) {
+    public Workout(String name, LinearLayout lowerlayout, RelativeLayout headerLayout, LayoutInflater inflater, Context context) {
 
         this.name = name;
-        this.weight = weight;
-        this.reps = reps;
         this.setNum = 1;
         this.restTimerPreferenceCode = -1;
         this.inflater = inflater;
@@ -115,6 +115,43 @@ public class Workout implements Serializable {
         workoutSet = view.findViewById(R.id.workout_set);
         workoutReps = view.findViewById(R.id.workout_reps);
 
+        workoutWeightAddButton = view.findViewById(R.id.workout_weightPlusButton);
+        workoutWeightMinusButton = view.findViewById(R.id.workout_weightMinusButton);
+
+        workoutRepsAddButton = view.findViewById(R.id.workout_repsPlusButton);
+        workoutRepsMinusButton = view.findViewById(R.id.workout_repsMinusButton);
+
+        workoutWeightAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incrementOne(workoutWeight);
+            }
+        });
+
+        workoutWeightMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decrementOne(workoutWeight);
+            }
+        });
+
+        workoutRepsAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incrementOne(workoutReps);
+            }
+        });
+
+        workoutRepsMinusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decrementOne(workoutReps);
+            }
+        });
+
+
+
+
 
         workoutCheckbox = view.findViewById(R.id.workout_setCheckbox);
         workoutCheckbox.setOnClickListener(new View.OnClickListener() {
@@ -149,8 +186,8 @@ public class Workout implements Serializable {
         });
 
         workoutSet.setText(String.valueOf(setNum));
-        workoutWeight.setText(String.valueOf(this.weight));
-        workoutReps.setText(String.valueOf(this.reps));
+        workoutWeight.setText(String.valueOf(0));
+        workoutReps.setText(String.valueOf(0));
 
 
 
@@ -203,6 +240,41 @@ public class Workout implements Serializable {
         setNum++;
         view = inflater.inflate(R.layout.workout_content_template, null);
         rootSetLayout.addView(view);
+        ImageButton tempImgButton = view.findViewById(R.id.workout_repsPlusButton);
+        tempImgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incrementOne((TextView) view.findViewById(R.id.workout_reps));
+            }
+        });
+
+        tempImgButton = view.findViewById(R.id.workout_weightPlusButton);
+        tempImgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                incrementOne((TextView) view.findViewById(R.id.workout_weight));
+            }
+        });
+
+        tempImgButton = view.findViewById(R.id.workout_weightMinusButton);
+        tempImgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decrementOne((TextView) view.findViewById(R.id.workout_weight));
+            }
+        });
+
+        tempImgButton = view.findViewById(R.id.workout_repsMinusButton);
+        tempImgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                decrementOne((TextView) view.findViewById(R.id.workout_reps));
+            }
+        });
+
+
+
+
         TextView temp = view.findViewById(R.id.workout_set);
         CheckBox tempCBox = view.findViewById(R.id.workout_setCheckbox);
         tempCBox.setOnClickListener(new View.OnClickListener() {
@@ -275,37 +347,37 @@ public class Workout implements Serializable {
         return footerView;
     }
 
-    public void editWeight(int weight) {
+    private void incrementOne(TextView view) {
 
-        this.weight = weight;
-        workoutWeight.setText(String.valueOf(this.weight));
-
-    }
-
-    public void editReps(int reps) {
-
-        this.reps = reps;
-        workoutReps.setText(String.valueOf(this.reps));
+        int amount;
+        amount = Integer.parseInt(view.getText().toString());
+        amount++;
+        view.setText(String.valueOf(amount));
 
     }
 
-    public int getWeight() {
+    private void decrementOne(TextView view) {
 
-        return weight;
+        int amount;
+        amount = Integer.parseInt(view.getText().toString());
+        amount--;
+        view.setText(String.valueOf(amount));
+
+    }
+
+    private void editNumber(TextView view, int increaseAmount) {
+
+        view.setText(String.valueOf(increaseAmount));
 
     }
 
-    public int getReps() {
-
-        return reps;
-
-    }
 
     public void setRestTimerPreferenceCode(int restTimerPreferenceCode) {
 
         this.restTimerPreferenceCode = restTimerPreferenceCode;
 
     }
+
 
     private int getTimerPreference() {
 
