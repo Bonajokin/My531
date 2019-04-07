@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ws_setView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="27dp">
+
+    <ImageButton
+        android:id="@+id/workout_repsPlusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/workout_reps"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="-36dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/workout_repsMinusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/workout_reps"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="-36dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_media_rew" />
 
     <CheckBox
         android:id="@+id/workout_setCheckbox"
@@ -21,7 +44,10 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="146dp"
         android:layout_marginBottom="-30dp"
-        android:text="100"
+        android:maxLength="3"
+        android:text="0"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
 
@@ -41,11 +67,34 @@
         android:id="@+id/workout_reps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLength="3"
         android:layout_alignBottom="@id/workout_setTitle"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="295dp"
         android:layout_marginBottom="-30dp"
-        android:text="1"
+        android:text="0"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/workout_weightPlusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/workout_weight"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="-36dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/workout_weightMinusButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/workout_weight"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="-36dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/background_light"
+        app:srcCompat="@android:drawable/ic_media_rew" />
 </RelativeLayout>

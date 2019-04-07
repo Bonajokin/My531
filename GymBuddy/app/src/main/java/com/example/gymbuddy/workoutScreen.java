@@ -25,7 +25,7 @@ public class workoutScreen extends AppCompatActivity {
             public void onClick(final View view) {
 
                 // Make a new workout template
-                final Workout template = new Workout("Testing", 0, 0, (LinearLayout) findViewById(R.id.ws_LinearLayout), (RelativeLayout) findViewById(R.id.toolbar), getLayoutInflater(), getApplicationContext());
+                final Workout template = new Workout("Testing", (LinearLayout) findViewById(R.id.ws_LinearLayout), (RelativeLayout) findViewById(R.id.toolbar), getLayoutInflater(), getApplicationContext());
 
                 Snackbar.make(view, "New Section Added", Snackbar.LENGTH_LONG)
                         .setAction("UNDO", new View.OnClickListener() {
