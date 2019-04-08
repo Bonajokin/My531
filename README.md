@@ -5,6 +5,8 @@ Notice:
 
 The name My531 is a placeholder name and will be changed to something more appropriate upon the release of the first version.
 
+The main project is in the GymBuddy folder.
+
 Anything that is graphic related such as the image buttons in particular are placeholders. Once all the logic has been implemented to satisfy
 the current sprint iteration they will be replaced as well as different color scheme.
 
