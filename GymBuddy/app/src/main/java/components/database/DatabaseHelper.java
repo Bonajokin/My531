@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import components.database.Schema.PersonalRecordsContract;
+import components.database.Schema.TrainingMaxesContract;
+import components.database.Schema.WorkoutContract;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "GymBuddy.db";
@@ -24,12 +28,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(query);
         }
 
+        for (String query : PersonalRecordsContract.createSQLEntries()) {
+            db.execSQL(query);
+        }
+
+        for (String query : TrainingMaxesContract.createSQLEntries()) {
+            db.execSQL(query);
+        }
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        onCreate(db);
     }
 
 

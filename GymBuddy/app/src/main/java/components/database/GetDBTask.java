@@ -8,6 +8,11 @@ import com.example.gymbuddy.homeScreen;
 
 public class GetDBTask extends AsyncTask<Context, Void, SQLiteDatabase> {
 
+    homeScreen parent;
+
+    public GetDBTask(homeScreen activity) {
+        parent = activity;
+    }
 
     @Override
     protected SQLiteDatabase doInBackground(Context... contexts) {
@@ -15,10 +20,11 @@ public class GetDBTask extends AsyncTask<Context, Void, SQLiteDatabase> {
         return dbHelper.getWritableDatabase();
     }
 
+
     @Override
     protected void onPostExecute(SQLiteDatabase sqLiteDatabase) {
 
         homeScreen.db = sqLiteDatabase;
-
+        parent.updatePR();
     }
 }

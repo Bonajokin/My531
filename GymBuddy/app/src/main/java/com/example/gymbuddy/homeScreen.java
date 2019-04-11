@@ -2,6 +2,8 @@ package com.example.gymbuddy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +20,9 @@ import android.widget.TextView;
 
 import components.TrainingMax;
 import components.database.GetDBTask;
+import components.database.Schema.PersonalRecordsContract;
+import components.database.Schema.TrainingMaxesContract;
+
 
 public class homeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,8 +43,11 @@ public class homeScreen extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GetDBTask dbTask = new GetDBTask();
+
+        GetDBTask dbTask = new GetDBTask(this);
+
         dbTask.execute(getApplicationContext());
+
         setContentView(R.layout.activity_home_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,32 +61,128 @@ public class homeScreen extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    public void updatePR() {
+
         benchPR = findViewById(R.id.hs_benchPR);
         deadliftPR = findViewById(R.id.hs_deadliftPR);
         pressPR = findViewById(R.id.hs_pressPR);
         squatPR = findViewById(R.id.hs_squatPR);
 
-        if (trainingMaxes == null) {
 
-            benchPR.setText("0");
-            deadliftPR.setText("0");
-            pressPR.setText("0");
-            squatPR.setText("0");
+        //Fix the false here to check fro personal records
+        //If Personal records haven't been set yet, try to set them to training maxes, if they aren't set yet just set them to 0;
+        try {
 
-        } else {
+            loadPRsFromDB();
 
-            updatePR();
+
+        } catch (CursorIndexOutOfBoundsException e) {
+
+            loadTMPRSFromDB();
 
         }
+
+
     }
 
+    private void loadTMPRSFromDB() {
 
-    public void updatePR() {
+        String benchQueryResult;
+        String deadliftQueryResult;
+        String pressQueryResult;
+        String squatQueryResult;
 
-        benchPR.setText(String.valueOf(trainingMaxes[0].getTrainingMax()));
-        deadliftPR.setText(String.valueOf(trainingMaxes[1].getTrainingMax()));
-        pressPR.setText(String.valueOf(trainingMaxes[2].getTrainingMax()));
-        squatPR.setText(String.valueOf(trainingMaxes[3].getTrainingMax()));
+        String[] projection = {
+                TrainingMaxesContract.TrainingMaxesEntry.getColumnNameBench(),
+                TrainingMaxesContract.TrainingMaxesEntry.getColumnNameDeadlift(),
+                TrainingMaxesContract.TrainingMaxesEntry.getColumnNamePress(),
+                TrainingMaxesContract.TrainingMaxesEntry.getColumnNameSquat()
+        };
+
+        String selection = TrainingMaxesContract.TrainingMaxesEntry._ID + " = ?";
+        String[] selectionArgs = {"1"};
+
+
+        Cursor cursor = db.query(
+                TrainingMaxesContract.TrainingMaxesEntry.getTableName(),   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
+        );
+
+        cursor.moveToNext();
+        try {
+            benchQueryResult = cursor.getString(cursor.getColumnIndex(TrainingMaxesContract.TrainingMaxesEntry.getColumnNameBench()));
+            deadliftQueryResult = cursor.getString(cursor.getColumnIndex(TrainingMaxesContract.TrainingMaxesEntry.getColumnNameDeadlift()));
+            pressQueryResult = cursor.getString(cursor.getColumnIndex(TrainingMaxesContract.TrainingMaxesEntry.getColumnNamePress()));
+            squatQueryResult = cursor.getString(cursor.getColumnIndex(TrainingMaxesContract.TrainingMaxesEntry.getColumnNameSquat()));
+
+            benchPR.setText(benchQueryResult);
+            deadliftPR.setText(deadliftQueryResult);
+            pressPR.setText(pressQueryResult);
+            squatPR.setText(squatQueryResult);
+
+            cursor.close();
+        } catch (CursorIndexOutOfBoundsException e) {
+
+            benchPR.setText(String.valueOf(0));
+            deadliftPR.setText(String.valueOf(0));
+            pressPR.setText(String.valueOf(0));
+            squatPR.setText(String.valueOf(0));
+
+            cursor.close();
+
+        }
+
+
+    }
+
+    private void loadPRsFromDB() {
+
+        String benchQueryResult;
+        String deadliftQueryResult;
+        String pressQueryResult;
+        String squatQueryResult;
+
+        String[] projection = {
+                PersonalRecordsContract.PersonalRecordsEntry.getColumnNameBenchpr(),
+                PersonalRecordsContract.PersonalRecordsEntry.getColumnNameDeadliftpr(),
+                PersonalRecordsContract.PersonalRecordsEntry.getColumnNamePresspr(),
+                PersonalRecordsContract.PersonalRecordsEntry.getColumnNameSquatpr()
+
+        };
+
+        String selection = TrainingMaxesContract.TrainingMaxesEntry._ID + " = ?";
+        String[] selectionArgs = {"1"};
+
+
+        Cursor cursor = db.query(
+                TrainingMaxesContract.TrainingMaxesEntry.getTableName(),   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
+        );
+
+        cursor.moveToNext();
+        benchQueryResult = cursor.getString(cursor.getColumnIndex(PersonalRecordsContract.PersonalRecordsEntry.getColumnNameBenchpr()));
+        deadliftQueryResult = cursor.getString(cursor.getColumnIndex(PersonalRecordsContract.PersonalRecordsEntry.getColumnNameDeadliftpr()));
+        pressQueryResult = cursor.getString(cursor.getColumnIndex(PersonalRecordsContract.PersonalRecordsEntry.getColumnNamePresspr()));
+        squatQueryResult = cursor.getString(cursor.getColumnIndex(PersonalRecordsContract.PersonalRecordsEntry.getColumnNameSquatpr()));
+
+        benchPR.setText(benchQueryResult);
+        deadliftPR.setText(deadliftQueryResult);
+        pressPR.setText(pressQueryResult);
+        squatPR.setText(squatQueryResult);
+
+        cursor.close();
 
 
     }
@@ -126,20 +230,11 @@ public class homeScreen extends AppCompatActivity
             //Set training Maxes, change icon later
 
 
-            //If training maxes were already loaded allow them to be edited. Edit this later when saving and loading is implemented.
+            Intent trainingMaxIntent = new Intent(homeScreen.this, trainingMaxScreen.class);
+            homeScreen.this.startActivity(trainingMaxIntent);
 
-            if (false) {
 
-                Intent trainingMaxIntent = new Intent(homeScreen.this, trainingMaxScreen.class);
-                homeScreen.this.startActivityForResult(trainingMaxIntent, EDIT_TRAININGMAXES_REQUESTCODE);
 
-            } else {
-
-                //If no training maxes are active allow setting them
-                Intent trainingMaxIntent = new Intent(homeScreen.this, trainingMaxScreen.class);
-                homeScreen.this.startActivityForResult(trainingMaxIntent, SET_TRAININGMAXES_REQUESTCODE);
-
-            }
         } else if (id == R.id.nav_workout) {
 
             //Goto the current  if one is active here.
