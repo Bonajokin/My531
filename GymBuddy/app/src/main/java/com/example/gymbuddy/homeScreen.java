@@ -2,6 +2,7 @@ package com.example.gymbuddy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import components.TrainingMax;
+import components.database.GetDBTask;
 
 public class homeScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,6 +28,8 @@ public class homeScreen extends AppCompatActivity
     TextView pressPR;
     TextView squatPR;
 
+
+    public static SQLiteDatabase db;
     private static final int SET_TRAININGMAXES_REQUESTCODE = 1;
     private static final int EDIT_TRAININGMAXES_REQUESTCODE = 2;
 
@@ -34,6 +38,8 @@ public class homeScreen extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GetDBTask dbTask = new GetDBTask();
+        dbTask.execute(getApplicationContext());
         setContentView(R.layout.activity_home_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

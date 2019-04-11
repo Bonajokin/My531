@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class TrainingMax implements Serializable {
 
-    private final double constant = 0.0333;
     private int trainingMax;
     private int reps;
     private int weight;
@@ -23,7 +22,7 @@ public class TrainingMax implements Serializable {
 
 
     private int calculate() {
-
+        double constant = 0.0333;
         trainingMax = (int) (weight * reps * constant + weight);
         return trainingMax;
 
