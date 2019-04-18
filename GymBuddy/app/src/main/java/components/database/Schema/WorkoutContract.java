@@ -18,6 +18,7 @@ public final class WorkoutContract {
                 "CREATE TABLE IF NOT EXISTS " + WorkoutTemplateEntry.TABLE_NAME + " (" +
                         WorkoutTemplateEntry._ID + " INTEGER PRIMARY KEY," +
                         WorkoutTemplateEntry.COLUMN_NAME_NAME + " TEXT," +
+                        WorkoutTemplateEntry.COLUMN_NAME_WORKOUT + " BLOB," +
                         WorkoutTemplateEntry.COLUMN_NAME_DATE + " DATE)";
         list.add(currentQuery);
 
@@ -50,8 +51,27 @@ public final class WorkoutContract {
 
     public static class WorkoutTemplateEntry implements BaseColumns {
 
+        private static final String COLUMN_NAME_WORKOUT = "workout";
+
+        public static String getTableName() {
+            return TABLE_NAME;
+        }
+
+        public static String getColumnNameName() {
+            return COLUMN_NAME_NAME;
+        }
+
+        public static String getColumnNameDate() {
+            return COLUMN_NAME_DATE;
+        }
+
+
         private static final String TABLE_NAME = "workout_workoutTemplate";
         private static final String COLUMN_NAME_NAME = "name";
+
+        public static String getColumnNameWorkout() {
+            return COLUMN_NAME_WORKOUT;
+        }
         private static final String COLUMN_NAME_DATE = "date";
 
 
@@ -63,7 +83,17 @@ public final class WorkoutContract {
         private static final String COLUMN_NAME_NAME = "name";
         private static final String COLUMN_NAME_WORKOUT_TEMPLATE_ID = "workout_template_id";
 
+        public static String getTableName() {
+            return TABLE_NAME;
+        }
 
+        public static String getColumnNameName() {
+            return COLUMN_NAME_NAME;
+        }
+
+        public static String getColumnNameWorkoutTemplateId() {
+            return COLUMN_NAME_WORKOUT_TEMPLATE_ID;
+        }
     }
 
     public static class SetEntry implements BaseColumns {
@@ -74,7 +104,25 @@ public final class WorkoutContract {
         private static final String COLUMN_NAME_SET_REPS = "reps";
         private static final String COLUMN_NAME_WORKOUT_ID = "workout_id";
 
+        public static String getTableName() {
+            return TABLE_NAME;
+        }
 
+        public static String getColumnNameSetNumber() {
+            return COLUMN_NAME_SET_NUMBER;
+        }
+
+        public static String getColumnNameSetWeight() {
+            return COLUMN_NAME_SET_WEIGHT;
+        }
+
+        public static String getColumnNameSetReps() {
+            return COLUMN_NAME_SET_REPS;
+        }
+
+        public static String getColumnNameWorkoutId() {
+            return COLUMN_NAME_WORKOUT_ID;
+        }
     }
 
 
